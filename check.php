@@ -9,6 +9,10 @@
 $ProjectName = 'daysndaze.net CMS';
 $RequiredPHP = '7.2.1';
 //$Copyright = '© 2012 Example'; // Empty or comment out to deactivate
+$RequiredClasses = array(
+    'DirectoryIterator',
+    'PDO',
+);
 $RequiredFunctions = array(
     'explode',
     'trim',
@@ -54,10 +58,6 @@ $RequiredFunctions = array(
     'readfile',
     'http_response_code',
     'strtotime',
-);
-$RequiredClasses = array(
-    'DirectoryIterator',
-    'PDO',
 );
 
 /********************************************************
