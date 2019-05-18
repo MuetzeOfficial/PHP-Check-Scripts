@@ -2,13 +2,7 @@
 /**
  * Copyright (c) 2019 Norman Huth
  * contact@normanhuth.com
- *
- */
-
-/**
- *
- * Script by (c) 2017 Norman Huth
- * contact@normanhuth.com
+ * License: MIT
  *
  */
 
@@ -70,8 +64,9 @@ $RequiredClasses = array(
  *
  * CONFIG END
  *
- * Copyright (c) 2017 Norman Huth
+ * Copyright (c) 2019 Norman Huth
  * contact@normanhuth.com
+ * License: MIT
  *
  * SCRIPT START
  *
@@ -122,6 +117,7 @@ foreach ($RequiredFunctions as $function) {
     *
     * Script by (c) 2017 Norman Huth
     * contact@normanhuth.com
+    * Licence: MIT
     *
     -->
     <style>
