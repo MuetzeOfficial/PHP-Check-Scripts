@@ -8,7 +8,7 @@
 
 $ProjectName = 'daysndaze.net CMS';
 $RequiredPHP = '7.2.1';
-//$Copyright = '© 2012 Example'; // Empty or comment out for deactivate
+//$Copyright = '© 2012 Example'; // Empty or comment out to deactivate
 $RequiredFunctions = array(
     'explode',
     'trim',
