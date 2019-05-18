@@ -1,5 +1,11 @@
 <?php
 /**
+ * Copyright (c) 2019 Norman Huth
+ * contact@normanhuth.com
+ *
+ */
+
+/**
  *
  * Script by (c) 2017 Norman Huth
  * contact@normanhuth.com
@@ -71,7 +77,6 @@ $RequiredClasses = array(
  *
  ********************************************************/
 
-$i=0;
 $available_row=$missing_row='';
 
 if (!defined('PHP_VERSION_ID')) {
@@ -92,7 +97,6 @@ foreach ($RequiredClasses as $class) {
         $available_row.='<tr><td>Class: '.$class.'</td><td class="alert-success">Available<i class="fas fa-check fa-lg fa-fw text-success"></td></tr>';
     } else {
         $missing_row.='<tr><td class="alert-danger font-weight-bold"></i> Class: '.$class.'</td><td class="alert-danger">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
-        $i++;
     }
 }
 foreach ($RequiredFunctions as $function) {
@@ -100,7 +104,6 @@ foreach ($RequiredFunctions as $function) {
         $available_row.='<tr><td>Function: '.$function.'</td><td class="alert-success">Available<i class="fas fa-check fa-lg fa-fw text-success"></td></tr>';
     } else {
         $missing_row.='<tr><td class="alert-danger font-weight-bold">Function: '.$function.'</td><td class="alert-danger">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
-        $i++;
     }
 }
 
