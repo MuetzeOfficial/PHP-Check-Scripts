@@ -5,7 +5,7 @@
  *
  */
 
-$ProjectName = 'My Script CMS';
+$ProjectName = 'My Script';
 $RequiredPHP = '7.2.1';
 //$Copyright = '© 2012 Example'; // Empty or comment out to deactivate
 
