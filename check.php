@@ -69,7 +69,7 @@ sort($RequiredFunctions);
 sort($RequiredClasses);
 sort($RequiredExtensions);
 sort($RequiredPDODrivers);
-$string = base64_decode(strrev('=4jdpR2L84TYvwDa0VHSg4WYtJ3bO5jIvZmbp1Cd4VGdi0zczFGbjBiIr5WYsJ2Xi0DdldmchRHIiwWYpNWamZ2TlpHdlVXTv02bj5iY1hGdpd2LvISPmVmcoBSY8ASeiBCdwlmcjNFI0NXZU5jIsxWYtNnI9M3chx2YgYXakxjPyhGP'));
+$string = base64_decode(strrev('==gP2lGZvwjPh9CPoRXdIBibh1mcv5kPi8mZulWL0hXZ0JSPzNXYsNGIismbhxmYfJSP0V2ZyFGdgICbhl2YpZmZPVme0VWdN9SbvNmLiVHa0l2Zv8iI9YWZyhGIhxDI5JGI0BXayN2UgQ3clRlPiwGbh12ci0zczFGbjBidpRGP'));
 foreach ($RequiredClasses as $class) {
     if(class_exists($class)) {
         $available_row.='<tr><td>Class: '.$class.'</td><td class="alert-success">Available<i class="fas fa-check fa-lg fa-fw text-success"></td></tr>';
@@ -187,7 +187,7 @@ if($NeedOnlyOnePDODriver && $i<$j) {
         </table>
     </div>
     <div class="card-footer text-center">
-        <?php echo isset($Copyright) && $Copyright!=''?$Copyright.$string:$string ?>
+        <?php echo isset($Copyright) && $Copyright!=''?$Copyright.base64_decode('PGhyPg==').$string:$string ?>
     </div>
 </div>
 </body>
