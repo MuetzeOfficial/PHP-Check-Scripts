@@ -45,6 +45,7 @@ $RequiredExtensions = array(
 $NeedOnlyOnePDODriver = true; // false: Every PDO driver required | true: Only one PDO driver required (show only warning if missing, but one or more exist)
 $RequiredPDODrivers = array(
     'mysql',
+    'mysql2',
 );
 
 /********************************************************
@@ -102,7 +103,7 @@ foreach ($RequiredPDODrivers as $driver) {
     if(isset($PDOAvailableDrivers) && in_array($driver,$PDOAvailableDrivers)) {
         $available_row.='<tr><td>PDO driver: '.$driver.'</td><td class="alert-success">Available<i class="fas fa-check fa-lg fa-fw text-success"></td></tr>';
     } else {
-        $missing_row.='<tr><td class="alert-{msg} font-weight-bold">PDO driver: '.$driver.'</td><td class="alert-{msg}">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
+        $missing_row.='<tr><td class="alert-{msg} font-weight-bold">PDO driver: '.$driver.'</td><td class="alert-{msg}">Not Available<i class="fas fa-{icon} fa-lg fa-fw text-danger"></td></tr>';
         $i++;
     }
 }
@@ -116,8 +117,10 @@ foreach ($RequiredFunctions as $function) {
 }
 if($NeedOnlyOnePDODriver && $i<$j) {
     $missing_row = str_replace('{msg}','warning',$missing_row);
+    $missing_row = str_replace('{icon}','ban',$missing_row);
 } else {
     $missing_row = str_replace('{msg}','danger',$missing_row);
+    $missing_row = str_replace('{icon}','times',$missing_row);
 }
 
 ?>
