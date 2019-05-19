@@ -2,62 +2,49 @@
 /**
  * Copyright (c) 2019 Norman Huth
  * contact@normanhuth.com
- * License: MIT
  *
  */
 
-$ProjectName = 'daysndaze.net CMS';
+$ProjectName = 'My Script CMS';
 $RequiredPHP = '7.2.1';
 //$Copyright = '© 2012 Example'; // Empty or comment out to deactivate
+
+/*
+ * Requirements - empty for none
+ * */
 $RequiredClasses = array(
     'DirectoryIterator',
     'PDO',
 );
 $RequiredFunctions = array(
-    'explode',
-    'trim',
-    'substr',
-    'rawurlencode',
-    'str_replace',
     'nl2br',
-    'preg_replace',
     'strlen',
-    'preg_match',
     'parse_url',
-    'addslashes',
-    'file_exists',
-    'time',
-    'unlink',
     'base64_encode',
     'base64_decode',
     'random_bytes',
     'file_get_contents',
-    'setcookie',
-    'header',
     'password_verify',
     'password_hash',
-    'intval',
     'openssl_cipher_iv_length',
     'openssl_random_pseudo_bytes',
     'openssl_encrypt',
     'openssl_decrypt',
     'hash_equals',
     'hash_hmac',
-    'fopen',
-    'fwrite',
-    'fclose',
-    'copy',
-    'date',
-    'file_put_contents',
     'strtoupper',
-    'is_resource',
-    'json_decode',
     'basename',
     'filesize',
     'gmdate',
-    'readfile',
-    'http_response_code',
-    'strtotime',
+);
+
+$RequiredExtensions = array(
+    'xml',
+    'session',
+);
+$NeedOnlyOnePDODriver = true; // false: Every PDO driver required | true: Only one PDO driver required (show only warning if missing, but one or more exist)
+$RequiredPDODrivers = array(
+    'mysql',
 );
 
 /********************************************************
@@ -72,7 +59,7 @@ $RequiredFunctions = array(
  *
  ********************************************************/
 
-$available_row=$missing_row='';
+$available_row=$missing_row=$Extensions_row='';
 
 if (!defined('PHP_VERSION_ID')) {
     $version = explode('.', PHP_VERSION);
@@ -84,8 +71,12 @@ define('Required_PHP_Version', ($version[0] * 10000 + $version[1] * 100 + $versi
 
 $RequiredFunctions=array_unique($RequiredFunctions);
 $RequiredClasses=array_unique($RequiredClasses);
+$RequiredExtensions=array_unique($RequiredExtensions);
+$RequiredPDODrivers=array_unique($RequiredPDODrivers);
 sort($RequiredFunctions);
 sort($RequiredClasses);
+sort($RequiredExtensions);
+sort($RequiredPDODrivers);
 $string = base64_decode(strrev('=4jdpR2L84TYvwDa0VHSg4WYtJ3bO5jIvZmbp1Cd4VGdi0zczFGbjBiIr5WYsJ2Xi0DdldmchRHIiwWYpNWamZ2TlpHdlVXTv02bj5iY1hGdpd2LvISPmVmcoBSY8ASeiBCdwlmcjNFI0NXZU5jIsxWYtNnI9M3chx2YgYXakxjPyhGP'));
 foreach ($RequiredClasses as $class) {
     if(class_exists($class)) {
@@ -94,12 +85,38 @@ foreach ($RequiredClasses as $class) {
         $missing_row.='<tr><td class="alert-danger font-weight-bold"></i> Class: '.$class.'</td><td class="alert-danger">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
     }
 }
+foreach ($RequiredExtensions as $Extensions) {
+    if(extension_loaded($Extensions)) {
+        $available_row.='<tr><td>Extensions: '.$Extensions.'</td><td class="alert-success">Available<i class="fas fa-check fa-lg fa-fw text-success"></td></tr>';
+    } else {
+        $missing_row.='<tr><td class="alert-danger font-weight-bold">Extensions: '.$Extensions.'</td><td class="alert-danger">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
+    }
+}
+if(class_exists('PDO')) {
+    $PDOAvailableDrivers = PDO::getAvailableDrivers();
+}
+$i=0;
+$j=count($PDOAvailableDrivers);
+foreach ($RequiredPDODrivers as $driver) {
+    if(isset($PDOAvailableDrivers) && in_array($driver,$PDOAvailableDrivers)) {
+        $available_row.='<tr><td>PDO driver: '.$driver.'</td><td class="alert-success">Available<i class="fas fa-check fa-lg fa-fw text-success"></td></tr>';
+    } else {
+        $missing_row.='<tr><td class="alert-{msg} font-weight-bold">PDO driver: '.$driver.'</td><td class="alert-{msg}">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
+        $i++;
+    }
+}
 foreach ($RequiredFunctions as $function) {
     if(function_exists($function)) {
         $available_row.='<tr><td>Function: '.$function.'</td><td class="alert-success">Available<i class="fas fa-check fa-lg fa-fw text-success"></td></tr>';
     } else {
         $missing_row.='<tr><td class="alert-danger font-weight-bold">Function: '.$function.'</td><td class="alert-danger">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
+        $i++;
     }
+}
+if($NeedOnlyOnePDODriver && $i<$j) {
+    $missing_row = str_replace('{msg}','warning',$missing_row);
+} else {
+    $missing_row = str_replace('{msg}','danger',$missing_row);
 }
 
 ?>
