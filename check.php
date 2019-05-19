@@ -92,6 +92,7 @@ foreach ($RequiredExtensions as $Extensions) {
         $missing_row.='<tr><td class="alert-danger font-weight-bold">Extensions: '.$Extensions.'</td><td class="alert-danger">Not Available<i class="fas fa-times fa-lg fa-fw text-danger"></td></tr>';
     }
 }
+$PDOAvailableDrivers = array();
 if(class_exists('PDO')) {
     $PDOAvailableDrivers = PDO::getAvailableDrivers();
 }
