@@ -17,13 +17,8 @@ $RequiredClasses = array(
     'PDO',
 );
 $RequiredFunctions = array(
-    'nl2br',
-    'strlen',
     'parse_url',
-    'base64_encode',
-    'base64_decode',
     'random_bytes',
-    'file_get_contents',
     'password_verify',
     'password_hash',
     'openssl_cipher_iv_length',
@@ -32,10 +27,6 @@ $RequiredFunctions = array(
     'openssl_decrypt',
     'hash_equals',
     'hash_hmac',
-    'strtoupper',
-    'basename',
-    'filesize',
-    'gmdate',
 );
 
 $RequiredExtensions = array(
@@ -45,7 +36,7 @@ $RequiredExtensions = array(
 $NeedOnlyOnePDODriver = true; // false: Every PDO driver required | true: Only one PDO driver required (show only warning if missing, but one or more exist)
 $RequiredPDODrivers = array(
     'mysql',
-    'mysql2',
+    'sqlite',
 );
 
 /********************************************************
